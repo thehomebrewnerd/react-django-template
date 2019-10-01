@@ -1,6 +1,10 @@
 .PHONY: lint
 lint:
-	flake8 --exclude=env,settings.py . && isort --check-only --recursive .
+	flake8 --exclude=env,settings.py,migrations . && isort --check-only --recursive .
+
+.PHONY: lint-fix
+lint-fix:
+	isort --recursive .
 
 .PHONY: installdeps
 installdeps:
