@@ -65,3 +65,9 @@ def test_password_too_short_fails(client):
     assert not user_exists
     err_msg = 'Ensure this field has at least 8 characters.'
     assert resp.json()['password'] == [err_msg]
+
+
+def test_get_request_fails_at_create_endpoint(client):
+    """Make sure that the GET method is not allowed at the create endpoint"""
+    resp = client.get(CREATE_USER_URL)
+    assert resp.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
